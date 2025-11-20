@@ -68,3 +68,46 @@ const queryAllFromBody = (query) => {
 const getErrorFieldContentByInputId = (form, inputId) => {
 	return form.querySelector(`input[id="${inputId}"]+.error`).innerText;
 }
+
+const mappingCellIndex = {
+	"0": "elso",
+	"1": "masodik",
+	"2": "harmadik",
+	"3": "negyedik",
+	"4": "otodik",
+}
+
+const getLastRowFromTableByTbodyId = (tbodyid) => {
+	const table = queryTableByTbodyId(tbodyid)
+	const lastrow = table.querySelector('tr:last-child');
+	const cells = lastrow.querySelectorAll('td');
+	const result = [];
+	for(const [key, cell] of cells.entries()){
+		result.push({
+			id: mappingCellIndex[key],
+			content: cell.innerText,
+			rowspan: cell.rowSpan,
+			colspan: cell.colSpan
+		})
+	}
+	return result;
+}
+
+const getLastTwoRowFromTableByTbodyId = (tbodyid) => {
+	const table = queryTableByTbodyId(tbodyid)
+	const beforeLastRow =  table.querySelector('tr:nth-last-child(2)');
+	const lastrow = table.querySelector('tr:last-child');
+	const cellsOfBeforeLast = beforeLastRow.querySelectorAll('td');
+	const cells = lastrow.querySelectorAll('td');
+	const mergedArray = [...Array.from(cellsOfBeforeLast), ...Array.from(cells)];
+	const result = [];
+	for(const [key, cell] of mergedArray.entries()){
+		result.push({
+			id: mappingCellIndex[key],
+			content: cell.innerText,
+			rowspan: cell.rowSpan,
+			colspan: cell.colSpan
+		})
+	}
+	return result;
+}
