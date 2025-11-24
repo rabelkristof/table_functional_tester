@@ -1,9 +1,9 @@
  test(async ()=> {
 
-    const form = queryFormById('htmlform')
+    const form = queryFormById(rowform)
 	assertNotUndefined(form)
 
-    const [_table, originalRows ]= queryTableByTbodyId('htmltbody', true);
+    const [_table, originalRows ]= queryTableByTbodyId(rowtablebody, true);
 
     setInputValueByid(form, 'elso','Test item')
     setInputValueByid(form, 'masodik', 'test item 2');
@@ -11,10 +11,10 @@
 
     await triggerSubmit(form)
 
-    const [__table, newRows ]= queryTableByTbodyId('htmltbody', true);
+    const [__table, newRows ]= queryTableByTbodyId(rowtablebody, true);
 
     assertEquals(originalRows+1, newRows, "Nem adott hozza sort");
-    const lastRow = getLastRowFromTableByTbodyId('htmltbody');
+    const lastRow = getLastRowFromTableByTbodyId(rowtablebody);
     assertEquals(3, lastRow.length);
     assertEquals("Test item", lastRow[0].content);
     assertEquals("test item 2", lastRow[1].content);

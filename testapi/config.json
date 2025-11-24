@@ -1,0 +1,4 @@
+{
+    "apifiles": ["../testapi/assert.js", "../testapi/query.js", "../testapi/test.js"],
+    "idconfig": "../testapi/initid.js"
+}    

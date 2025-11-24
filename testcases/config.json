@@ -1,0 +1,118 @@
+{
+    "colspantablebody": "htmltbody",
+    "rowspantablebody": "jstbody",
+    "rowspanformid": "",
+    "colspanformid": "",
+    "testcases": [
+        {
+            "id": 1,
+            "details": "colspan táblázathoz hozzáadunk colspan nélküli sort",
+            "type": "colspan",
+            "file": "./testcases/colspan/addrowsuccesswithoutcolspan.js"
+        },
+        {
+            "id": 2,
+            "details": "colspan táblázathoz hozzáadunk colspanos sort",
+            "type": "colspan",
+            "file": "./testcases/colspan/addrowsuccesscolspan2.js"
+        },
+        {
+            "id": 3,
+            "details": "rowspanos táblázathoz hozzáadunk szimpla sort",
+            "type": "rowspan",
+            "file": "./testcases/rowspan/addsimplerow.js"
+        },
+        {
+            "id": 4,
+            "details": "rowspanos táblázathoz hozzáadunk dupla sort",
+            "type": "rowspan",
+            "file": "./testcases/rowspan/adddoublerow.js"
+        },
+        {
+            "id": 5,
+            "details": "validációs üzenetek megjelennek ha nincs kitöltve egy mező sem",
+            "type": "colspan",
+            "file": "./testcases/validationcolspan/formvalidationmissall.js"
+        },
+        {
+            "id": 6,
+            "details": "validációs üzenet megjelenik ha nincs kitöltve az első mező",
+            "type": "colspan",
+            "file": "./testcases/validationcolspan/formvalidationmissfirst.js"
+        },
+        {
+            "id": 7,
+            "details": "validációs üzenet megjelenik ha nincs kitöltve a második mező",
+            "type": "colspan",
+            "file": "./testcases/validationcolspan/formvalidationmisssecond.js"
+        },
+        {
+            "id": 8,
+            "details": "validációs üzenet megjelenik ha nincs kitöltve a harmadik mező",
+            "type": "colspan",
+            "file": "./testcases/validationcolspan/formvalidationmissthird.js"
+        },
+        {
+            "id": 9,
+            "details": "validációs üzenet megjelenik ha csak az első mező van kitöltve",
+            "type": "colspan",
+            "file": "./testcases/validationcolspan/formvalidationonlyfirst.js"
+        },
+        {
+            "id": 10,
+            "details": "validációs üzenet megjelenik ha csak a második mező van kitöltve",
+            "type": "colspan",
+            "file": "./testcases/validationcolspan/formvalidationonlysecond.js"
+        },
+        {
+            "id": 11,
+            "details": "validációs üzenet megjelenik ha csak a harmadik mező van kitöltve",
+            "type": "colspan",
+            "file": "./testcases/validationcolspan/formvalidationonlythird.js"
+        },
+        {
+            "id": 12,
+            "details": "validációs üzenetek megjelennek ha nincs kitöltve egy mező sem",
+            "type": "rowspan",
+            "file": "./testcases/validationrowspan/formvalidationmissall.js"
+        },
+        {
+            "id": 13,
+            "details": "validációs üzenet megjelenik ha nincs kitöltve az első mező",
+            "type": "rowspan",
+            "file": "./testcases/validationrowspan/formvalidationmissfirst.js"
+        },
+        {
+            "id": 14,
+            "details": "validációs üzenet megjelenik ha nincs kitöltve a második mező",
+            "type": "rowspan",
+            "file": "./testcases/validationrowspan/formvalidationmisssecond.js"
+        },
+        {
+            "id": 15,
+            "details": "validációs üzenet megjelenik ha nincs kitöltve a harmadik mező",
+            "type": "rowspan",
+            "file": "./testcases/validationrowspan/formvalidationmissthird.js"
+        },
+        {
+            "id": 16,
+            "details": "validációs üzenet megjelenik ha csak az első mező van kitöltve",
+            "type": "rowspan",
+            "file": "./testcases/validationrowspan/formvalidationonlyfirst.js"
+        },
+        {
+            "id": 17,
+            "details": "validációs üzenet megjelenik ha csak a második mező van kitöltve",
+            "type": "rowspan",
+            "file": "./testcases/validationrowspan/formvalidationonlysecond.js"
+        },
+        {
+            "id": 18,
+            "details": "validációs üzenet megjelenik ha csak a harmadik mező van kitöltve",
+            "type": "rowspan",
+            "file": "./testcases/validationrowspan/formvalidationonlythird.js"
+        }
+    ],
+    "checkboxid": "",
+    "dropdownid": ""
+}

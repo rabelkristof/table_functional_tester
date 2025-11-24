@@ -7,17 +7,23 @@ const test = async (callback) => {
 }
 
 
-const promisfySubmitEvent = (form) => {
+const triggerSubmit = (form) => {
+	const promise = promisifyEvent(form, 'submit', (e)=> e.preventDefault());
+	form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+	return promise;
+}
+
+const promisifyEvent = (htmlElement, eventType, extraCallback = (_e) => {}) =>  {
 	return new Promise((resolve) => {
-		form.addEventListener('submit', (e) => {
-			e.preventDefault();
+		htmlElement.addEventListener(eventType, (e) => {
+			extraCallback(e);
 			resolve();
 		})
 	})
 }
 
-const triggerSubmit = (form) => {
-	const promise = promisfySubmitEvent(form);
-	form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+const triggerEvent = (htmlElement, eventType) => {
+	const promise = promisifyEvent(htmlElement, eventType);
+	htmlElement.dispatchEvent(new Event(eventType, { bubbles: true, cancelable: true }));
 	return promise;
 }

@@ -1,9 +1,9 @@
 test(async () => {
-	const form = queryFormById('htmlform')
+	const form = queryFormById(colform)
 	assertNotUndefined(form)
 
 
-	const [_table, originalRows ]= queryTableByTbodyId('htmltbody', true);
+	const [_table, originalRows ]= queryTableByTbodyId(coltablebody, true);
 
 
 	setInputValueByid(form, 'masodik','Test item')
@@ -12,8 +12,8 @@ test(async () => {
 
 	await triggerSubmit(form)
 	
-	const [_, newRows ]= queryTableByTbodyId('htmltbody', true);
+	const [_, newRows ]= queryTableByTbodyId(coltablebody, true);
     const errorMessageElso = getErrorFieldContentByInputId(form, 'elso');
     assertNotEmptyString(errorMessageElso);
-	return assertEquals(originalRows, newRows, "Nem fuzott hozza sort");
+	return assertEquals(originalRows, newRows, "Sort fűzött hozzá");
 })

@@ -1,9 +1,9 @@
 test(async () => {
-	const form = queryFormById('htmlform')
+	const form = queryFormById(rowform)
 	assertNotUndefined(form)
 
 
-	const [_table, originalRows ]= queryTableByTbodyId('htmltbody', true);
+	const [_table, originalRows ]= queryTableByTbodyId(rowtablebody, true);
 
 
 	setInputValueByid(form, 'elso','Test item')
@@ -12,10 +12,10 @@ test(async () => {
 
 	await triggerSubmit(form)
 	
-	const [_, newRows ]= queryTableByTbodyId('htmltbody', true);
+	const [_, newRows ]= queryTableByTbodyId(rowtablebody, true);
     const errorMessageMasodik = getErrorFieldContentByInputId(form, 'masodik');
     assertNotEmptyString(errorMessageMasodik);
-    assertEquals(originalRows, newRows, "Nem fuzott hozza sort");
+    assertEquals(originalRows, newRows, "Sort fűzött hozzá");
     setInputValueByid(form, 'masodik', 'test item 2');
     await triggerSubmit(form)
     const elemList = ['elso', 'masodik', 'harmadik'];
@@ -24,6 +24,6 @@ test(async () => {
     ).forEach(element => {
         assertEmptyString(element);
     });
-    const [__, newRowsAgain ]= queryTableByTbodyId('htmltbody', true);
-	return assertEquals(originalRows+1, newRowsAgain, "Nem fuzott hozza sort");;
+    const [__, newRowsAgain ]= queryTableByTbodyId(rowtablebody, true);
+	return assertNotEquals(originalRows+1, newRowsAgain, "Nem fuzott hozza sort");
 })

@@ -1,3 +1,5 @@
+mod generated_assets;
+
 use headless_chrome::{Browser, FetcherOptions, LaunchOptionsBuilder};
 use std::env;
 use std::{fs, path::Path};
@@ -24,7 +26,7 @@ fn main() -> Result<(), failure::Error> {
 
         tab.wait_until_navigated().unwrap();
 
-        let testcases_dir = Path::new("./testcases/rowspan");
+        let testcases_dir = Path::new("./testcases/validationrowspan");
         let api_dir = Path::new("./testapi");
 
         for entry in std::fs::read_dir(testcases_dir)? {
