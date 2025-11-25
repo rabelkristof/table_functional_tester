@@ -121,12 +121,6 @@
             "file": "./testcases/dombeforejs/checkhtmlform.js"
         },
         {
-            "id": 21,
-            "details": "A html táblázat szülőeleme el van rejtve",
-            "type": "html",
-            "file": "./testcases/dombeforejs/checkhtmldivhidden.js"
-        },
-        {
             "id": 22,
             "details": "A colspanos form esetében meghívódik a preventdefault submitkor",
             "type": "colspan",

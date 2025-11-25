@@ -1,8 +1,26 @@
-const test = async (callback) => {
+const test = async (callback, ignore=false) => {
 	try{
-		return await callback();
+		if(!ignore){
+			const result = await callback();
+			if(result){
+				return JSON.stringify({
+					"result": true,
+					"ignored": false
+				})
+			}
+		}else{
+			return JSON.stringify({
+					"result": true,
+					"ignored": ignore
+				})
+		}
+		 
 	}catch(e){
-		return e;
+		return JSON.stringify({
+					"result": false,
+					"ignored": ignore,
+					"message": e.message
+				})
 	}
 }
 

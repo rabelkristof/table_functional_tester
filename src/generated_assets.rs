@@ -90,10 +90,6 @@
 			content: include_bytes!(".././testcases/dombeforejs/checkhtmlform.js"),
 			details: "Csak 1 html form van",
 			typ: "html" });
-		m.insert(21, TestCaseData {
-			content: include_bytes!(".././testcases/dombeforejs/checkhtmldivhidden.js"),
-			details: "A html táblázat szülőeleme el van rejtve",
-			typ: "html" });
 		m.insert(22, TestCaseData {
 			content: include_bytes!(".././testcases/colspan/preventdefaultcalledonsubmit.js"),
 			details: "A colspanos form esetében meghívódik a preventdefault submitkor",

@@ -1,6 +1,7 @@
 mod generated_assets;
 
 use headless_chrome::{Browser, FetcherOptions, LaunchOptionsBuilder, protocol::cdp};
+use serde_json::Value;
 use std::env;
 
 use crate::generated_assets::{ID_CONFIG, get_api_files, get_testcases_map};
@@ -20,7 +21,6 @@ fn main() -> Result<(), failure::Error> {
     args.next();
     if let Some(path) = args.next() {
         let browser = Browser::new(options).unwrap();
-        println!("{:?}", path);
         let tab = browser.new_tab().unwrap();
         for value in get_api_files() {
             let content = get_content_from_bytes(value);
@@ -36,9 +36,6 @@ fn main() -> Result<(), failure::Error> {
         tab.navigate_to(&format!("file:///{}", path)).unwrap();
 
         for (_key, value) in get_testcases_map() {
-            if value.typ != "checkbox" {
-                continue;
-            }
             let content_of_id = get_content_from_bytes(ID_CONFIG);
             tab.evaluate(&content_of_id, false).unwrap();
 
@@ -47,26 +44,48 @@ fn main() -> Result<(), failure::Error> {
             let script = get_content_from_bytes(&value.content);
             println!("[{}]{}", value.typ, value.details);
             let result = tab.evaluate(&script, true).unwrap();
-            // println!("{:?}", result);
-            match result.subtype {
-                Some(_error) => {
-                    if let Some(description) = result.description {
-                        let (err, _stack) = description
-                            .split_once("\n")
-                            .unwrap_or(("Ismeretlen hiba", ""));
-                        println!("{}", err);
-                    }
-                }
-                None => {
-                    let test_passed = result.value.and_then(|v| v.as_bool()).unwrap_or(false);
-                    println!("teszt passed: {}", test_passed);
-                }
+            // println!("{:?}", result.value);
+           
+           let test_passed = result.value.and_then(|v|  {
+            return Some(TESTRESULT::from(v))}).unwrap_or(TESTRESULT::FAILED(String::from("Ismeretlen hiba")));
+            match test_passed {
+                TESTRESULT::IGNORED => {println!("Teszt ignorált.")}
+                TESTRESULT::FAILED(msg) => { println!("{}", msg)}
+                TESTRESULT::SUCCESS => {println!("Teszt sikeres.")}
             };
-
             tab.reload(true, None).unwrap();
         }
     }
     Ok(())
+}
+
+enum TESTRESULT {
+    SUCCESS,
+    IGNORED,
+    FAILED(String)
+}
+
+
+
+impl From<Value> for TESTRESULT{
+    fn from(value: Value) -> Self {
+
+        if let Ok(value) = serde_json::from_str::<Value>(value.as_str().unwrap_or("{result: false, ignored: false}")) {
+            let result = value["result"].as_bool().unwrap_or(false);
+            let message = value["message"].as_str().unwrap_or("Ismeretlen hiba");
+            let ignored = value["ignored"].as_bool().unwrap_or(false);
+            
+            if ignored {
+                Self::IGNORED
+            }else if result {
+                Self::SUCCESS
+            }else{
+                Self::FAILED(String::from(message))
+            }
+        }else{
+            Self::FAILED(String::from("Ismeretlen hiba"))
+        }
+    }
 }
 
 fn get_content_from_bytes(content: &'static [u8]) -> String {
