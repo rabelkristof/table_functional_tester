@@ -7,5 +7,6 @@ window.hascheckbox = HASCHECKBOX;
 window.checkboxId = 'CHECKBOXID';
 window.checkboxdefault = CHECKBOXDEFAULT;
 window.hasDropdown = HASDROPDOWN;
+window.dropdownId = 'DROPDOWN_ID';
 window.defaultSelected = 'DEFAULTSELECTED';
 window.defaultEmpty = DEFAULTEMPTY;
