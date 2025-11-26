@@ -59,12 +59,6 @@ jobs:
           tag_name: ${{ env.TAG }}
           name: Release from ${{ env.TAG }}
           body: 'Release created manually from tag ${{ env.TAG }}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload release binary
-        uses: softprops/action-gh-release@v2
-        with:
           files: target/${{ matrix.args == '' && 'release' || matrix.args }}/release/table_functional_tester${{ matrix.platform == 'windows-latest' && '.exe' || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
