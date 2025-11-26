@@ -177,6 +177,6 @@ fn parse_config(mut idconfig: String, html_path: String) -> String {
         .map(|v| v.to_string())
         .unwrap_or_else(|| "undefined".to_string()),
     );
-    println!("{}", idconfig);
+
     return idconfig;
 }

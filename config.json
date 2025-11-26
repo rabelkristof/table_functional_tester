@@ -8,6 +8,7 @@
   "checkbox_id": "tableselector",
   "checkbox_default": false,
   "has_dropdown": false,
-  "default_selected": "",
-  "default_empty": true
+  "dropdown_id": null,
+  "default_selected": null,
+  "default_empty": null
 }
