@@ -41,6 +41,7 @@ jobs:
         run: echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Create tag from released commit
+        id: create_tag
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
