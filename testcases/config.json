@@ -149,6 +149,24 @@
             "details": "A checkbox változtatásakor megváltozik a megjelenitendő szekció",
             "type": "checkbox",
             "file": "./testcases/checkbox/checkboxvaluechange.js"
+        },
+        {
+            "id": 27,
+            "details": "Ha a lenyíló elem alapértelmezetten üres értékkel rendelkezik, akkor el vannak rejtve a táblázatok",
+            "type": "dropdown",
+            "file": "./testcases/dropdown/defaultvisiblenothing.js"
+        },
+        {
+            "id": 28,
+            "details": "Ha a lenyíló elem alapértelmezetten kiválasztással rendelkezik, akkor pontosan csak egy div jelenik meg",
+            "type": "dropdown",
+            "file": "./testcases/dropdown/defaultselectedandshow.js"
+        },
+        {
+            "id": 29,
+            "details": "Ha üres értékre változtatunk, akkor nem jelenik meg táblázat sem",
+            "type": "dropdown",
+            "file": "./testcases/dropdown/changetoempty.js" 
         }
     ]
 }

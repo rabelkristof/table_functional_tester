@@ -94,7 +94,7 @@ impl From<Value> for TESTRESULT {
             let result = value["result"].as_bool().unwrap_or(false);
             let message = value["message"].as_str().unwrap_or("Ismeretlen hiba");
             let ignored = value["ignored"].as_bool().unwrap_or(false);
-
+            println!("{}", ignored);
             if ignored {
                 Self::IGNORED
             } else if result {
@@ -177,6 +177,6 @@ fn parse_config(mut idconfig: String, html_path: String) -> String {
         .map(|v| v.to_string())
         .unwrap_or_else(|| "undefined".to_string()),
     );
-
+    println!("{}", idconfig);
     return idconfig;
 }

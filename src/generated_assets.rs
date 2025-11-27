@@ -110,6 +110,18 @@
 			content: include_bytes!(".././testcases/checkbox/checkboxvaluechange.js"),
 			details: "A checkbox változtatásakor megváltozik a megjelenitendő szekció",
 			typ: "checkbox" });
+		m.insert(27, TestCaseData {
+			content: include_bytes!(".././testcases/dropdown/defaultvisiblenothing.js"),
+			details: "Ha a lenyíló elem alapértelmezetten üres értékkel rendelkezik, akkor el vannak rejtve a táblázatok",
+			typ: "dropdown" });
+		m.insert(28, TestCaseData {
+			content: include_bytes!(".././testcases/dropdown/defaultselectedandshow.js"),
+			details: "Ha a lenyíló elem alapértelmezetten kiválasztással rendelkezik, akkor pontosan csak egy div jelenik meg",
+			typ: "dropdown" });
+		m.insert(29, TestCaseData {
+			content: include_bytes!(".././testcases/dropdown/changetoempty.js"),
+			details: "Ha üres értékre változtatunk, akkor nem jelenik meg táblázat sem",
+			typ: "dropdown" });
     m
 }
 

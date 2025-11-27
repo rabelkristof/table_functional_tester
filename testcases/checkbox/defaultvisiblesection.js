@@ -9,4 +9,4 @@ test(async () => {
         }
     }
     return true;
-})
+}, hasDropdown)
