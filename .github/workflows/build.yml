@@ -49,22 +49,22 @@ jobs:
           binary_extension=""
           if [[ "${RUNNER_OS}" == "Windows" ]]; then
             binary_extension=".exe"
-            binary_path="test-windows-latest${binary_extension}"
+            binary_path="table_functional_tester-windows-latest${binary_extension}"
           elif [[ "${RUNNER_OS}" == "macOS" ]]; then
             if [[ "${{matrix.name}}" == "x86_64" ]]; then
-              binary_path="test-x86_64-latest"
+              binary_path="table_functional_tester-x86_64-latest"
             else
-              binary_path="test-aarch64-latest"
+              binary_path="table_functional_tester-aarch64-latest"
             fi
           elif [[ "${RUNNER_OS}" == "Linux" ]]; then
-            binary_path="test-ubuntu-latest"
+            binary_path="table_functional_tester-ubuntu-latest"
           else
             echo "error: unknown OS: ${RUNNER_OS}"
             exit 1
           fi
           echo "::set-output name=binary_path::${binary_path}"
           cargo build --all --release
-          cp "target/release/testecsje${binary_extension}" "${binary_path}"
+          cp "target/release/table_functional_tester${binary_extension}" "${binary_path}"
           strip "${binary_path}"
       
 
