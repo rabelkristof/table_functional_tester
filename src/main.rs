@@ -5,7 +5,10 @@ mod test_config;
 mod test_runner;
 
 use headless_chrome::{FetcherOptions, LaunchOptionsBuilder};
-use std::env;
+use std::{
+    env,
+    path::{Path, PathBuf},
+};
 
 use crate::{config_generator::run_generator, test_runner::run_tests};
 fn main() -> Result<(), failure::Error> {
@@ -26,7 +29,19 @@ fn main() -> Result<(), failure::Error> {
         if param == "generator" {
             run_generator();
         } else {
-            let path = std::fs::canonicalize(param).expect("Nem található a fájl (rossz útvonal?)");
+            let path = Path::new(&param);
+
+            let path = if path.exists() {
+                std::fs::canonicalize(path).expect("Nem található a fájl (rossz útvonal?)")
+            } else {
+                std::path::absolute(path).expect("Nem található a fájl (rossz útvonal?)")
+            };
+
+            let path = if let Some(stripped) = path.to_str().and_then(|s| s.strip_prefix(r"\\?\")) {
+                PathBuf::from(stripped)
+            } else {
+                path
+            };
             run_tests(options, path.into_os_string().into_string().unwrap(), args);
         }
     }
